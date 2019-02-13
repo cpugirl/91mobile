@@ -433,46 +433,112 @@ class App extends Component {
               </button>
               <Modal open={this.state.open} onClose={this.onCloseModal} center>
                 <p align="center">Correct Answers</p>
-                <div style={{ border: "3px solid grey", padding: 5 }}>
-                  <img src={DiljitSingh} width={100} />
-                  <img src={correct} width={50} />
-                  <img src={Xiaomi} width={100} />
-                </div>
-                <div style={{ border: "3px solid grey", padding: 5 }}>
-                  <img src={Ramdev} width={100} />
-                  <img src={correct} width={50} />
-                  <img src={MicromaxInfinity} width={100} />
-                </div>
-                <div style={{ border: "3px solid grey", padding: 5 }}>
-                  <img src={RanveerSingh} width={100} />
-                  <img src={correct} width={50} />
-                  <img src={SamgsungA9} width={100} />
-                </div>
-                <div style={{ border: "3px solid grey", padding: 5 }}>
-                  <img src={SRK} width={100} />
-                  <img src={correct} width={50} />
-                  <img src={HuaweiP20} width={100} />
-                </div>
-                <div style={{ border: "3px solid grey", padding: 5 }}>
-                  <img src={Sunny} width={100} />
-                  <img src={correct} width={50} />
-                  <img src={MotoZ2} width={100} />
-                </div>
-                <div style={{ border: "3px solid grey", padding: 5 }}>
-                  <img src={Virat} width={100} />
-                  <img src={correct} width={50} />
-                  <img src={AppleXs} width={100} />
-                </div>
-                <div style={{ border: "3px solid grey", padding: 5 }}>
-                  <img src={Badshah} width={100} />
-                  <img src={correct} width={50} />
-                  <img src={SamgsungS9} width={100} />
-                </div>
-                <div style={{ border: "3px solid grey", padding: 5 }}>
-                  <img src={Deepika} width={100} />
-                  <img src={correct} width={50} />
-                  <img src={OppoF3} width={100} />
-                </div>
+                <table>
+                  <tr>
+                    <td>
+                      <img src={DiljitSingh} width={100} />
+                      <figcaption> Diljit Singh </figcaption>
+                    </td>
+                    <td>
+                      <img src={correct} width={50} />
+                    </td>
+                    <td>
+                      <img src={Xiaomi} width={100} />
+                      <figcaption> Xiaomi-mi-mix-3 </figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src={Ramdev} width={100} />
+                      <figcaption> Baba Ramdev </figcaption>
+                    </td>
+                    <td>
+                      <img src={correct} width={50} />
+                    </td>
+                    <td>
+                      <img src={MicromaxInfinity} width={100} />
+                      <figcaption> Micromax-Infinity-N11 </figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src={RanveerSingh} width={100} />
+                      <figcaption> Ranveer Singh </figcaption>
+                    </td>
+                    <td>
+                      <img src={correct} width={50} />
+                    </td>
+                    <td>
+                      <img src={SamgsungA9} width={100} />
+                      <figcaption> Samgsung-Galaxy-A9-Pro </figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src={SRK} width={100} />
+                      <figcaption> Shah Rukh Khan </figcaption>
+                    </td>
+                    <td>
+                      <img src={correct} width={50} />
+                    </td>
+                    <td>
+                      <img src={HuaweiP20} width={100} />
+                      <figcaption> Huawei-P20-Pro </figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src={Sunny} width={100} />
+                      <figcaption> Sunny Deol </figcaption>
+                    </td>
+                    <td>
+                      <img src={correct} width={50} />
+                    </td>
+                    <td>
+                      <img src={MotoZ2} width={100} />
+                      <figcaption> Moto-Z2-Force </figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src={Virat} width={100} />
+                      <figcaption> Virat </figcaption>
+                    </td>
+                    <td>
+                      <img src={correct} width={50} />
+                    </td>
+                    <td>
+                      <img src={AppleXs} width={100} />
+                      <figcaption> Apple-iPhone-Xs-Max </figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src={Badshah} width={100} />
+                      <figcaption> Badshah </figcaption>
+                    </td>
+                    <td>
+                      <img src={correct} width={50} />
+                    </td>
+                    <td>
+                      <img src={SamgsungS9} width={100} />
+                      <figcaption> Samgsung-Galaxy-S9+ </figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src={Deepika} width={100} />
+                      <figcaption> Deepika </figcaption>
+                    </td>
+                    <td>
+                      <img src={correct} width={50} />
+                    </td>
+                    <td>
+                      <img src={OppoF3} width={100} />
+                      <figcaption> Oppo-F3-Plus </figcaption>
+                    </td>
+                  </tr>
+                </table>
               </Modal>
             </div>
           )}
