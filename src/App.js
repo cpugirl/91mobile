@@ -24,15 +24,18 @@ import Xiaomi from "./assets/phones/xiaomi-mi-mix-3.png";
 import fb from "./assets/fb.png";
 import twitter from "./assets/twitter.png";
 import amazon from "./assets/amazon.jpg";
+import correct from "./assets/correct.png";
 import SliderPhone from "./phoneSlider";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
+import Modal from "react-responsive-modal";
 
 class App extends Component {
   state = {
     finallySubmit: false,
     showResult: false,
+    open: false,
     answerCheck: [],
-    matchNumber:0,
+    matchNumber: 0,
     celebImages: [
       {
         image: DiljitSingh,
@@ -176,6 +179,14 @@ class App extends Component {
     ],
     selectedPhone: null
   };
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+
   handleSelectedCelebrity = (celeb, i) => {
     let updatedStateImages = cloneDeep(this.state.celebImages);
     updatedStateImages.forEach(item => {
@@ -186,7 +197,7 @@ class App extends Component {
     let updatedSelectedCeleb = updatedStateImages.filter(
       item => item.key === i
     );
-    console.log(updatedSelectedCeleb, celeb, i);
+    //console.log(updatedSelectedCeleb, celeb, i);
     let updatedSelectedCelebObj = {};
     updatedSelectedCeleb.forEach(item => {
       updatedSelectedCelebObj.image = item.image;
@@ -212,7 +223,9 @@ class App extends Component {
         }
       }
     });
-    this.setState({ phoneImages: updatedPhoneImages });
+    this.setState({ phoneImages: updatedPhoneImages }, () =>
+      this.finallySubmit()
+    );
   };
   handleSelectedPhone = (phone, i) => {
     let updatedPhoneImages = cloneDeep(this.state.phoneImages);
@@ -251,16 +264,16 @@ class App extends Component {
     });
 
     updatedPhoneImages[i] = updatedSelectedPhoneObj;
-    console.log("final",this.state)
-    let count=0;
-    this.state.celebImages.map(item=>{
-      console.log("item",item)
-      if (item.clicked===true || item.match !=null){
-         count=count+1;
+    //console.log("final",this.state)
+    let count = 0;
+    this.state.celebImages.map(item => {
+      //console.log("item",item)
+      if (item.clicked === true || item.match != null) {
+        count = count + 1;
       }
-    })
-    this.setState({ phoneImages: updatedPhoneImages,matchNumber:count}, () =>
-      this.addSelectedPhoneForCeleb(),
+    });
+    this.setState({ phoneImages: updatedPhoneImages, matchNumber: count }, () =>
+      this.addSelectedPhoneForCeleb()
     );
     this.setState({ selectedPhone: updatedSelectedPhoneObj });
   };
@@ -283,15 +296,15 @@ class App extends Component {
     );
   };
   finallySubmit = () => {
-    if (!this.state.finallySubmit) {
-      this.state.celebImages.forEach(item => {
-        if (!isEmpty(item.match)) {
-          this.setState({ finallySubmit: true });
-        } else {
-          this.setState({ finallySubmit: false });
-        }
-      });
-    }
+    let isValid = true;
+    this.state.celebImages.forEach(item => {
+      isValid = !isEmpty(item.match) && isValid;
+      if (isValid) {
+        this.setState({ finallySubmit: true });
+      } else {
+        this.setState({ finallySubmit: false });
+      }
+    });
   };
   handleSubmit = () => {
     if (this.state.finallySubmit) {
@@ -311,7 +324,7 @@ class App extends Component {
   };
 
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     return (
       <div className={styles.body}>
         <div className={styles.container}>
@@ -323,12 +336,17 @@ class App extends Component {
           {!this.state.showResult && (
             <div className={styles.subheading}>
               <p align="center">
-                Choose the perfect gift for your favourite celebrity
+                Choose the perfect gift for the celebrities
                 <br />
-                 and stand a chance to win Amazon vouchers.
+                and stand a chance to win Amazon vouchers.
               </p>
-              <p align="center">First, Select a celebrity and then click the phone you want to match them to</p>
-              <p align="center" >( {this.state.matchNumber} out of 8 matched )</p>
+              <p align="center" style={{ fontWeight: "bold" }}>
+                First, select a celebrity and then click the phone you want to
+                match them to
+              </p>
+              <p align="center">
+                ( {this.state.matchNumber} out of 8 matched )
+              </p>
             </div>
           )}
           {!this.state.showResult && (
@@ -405,9 +423,64 @@ class App extends Component {
             </div>
           )}
           {this.state.showResult && (
+            <div style={{ marginTop: 5 }}>
+              <button
+                className={styles.rightButton}
+                onClick={this.onOpenModal}
+                style={{}}
+              >
+                Show Correct Answers
+              </button>
+              <Modal open={this.state.open} onClose={this.onCloseModal} center>
+                <p align="center">Correct Answers</p>
+                <div style={{ border: "3px solid grey", padding: 5 }}>
+                  <img src={DiljitSingh} width={100} />
+                  <img src={correct} width={50} />
+                  <img src={Xiaomi} width={100} />
+                </div>
+                <div style={{ border: "3px solid grey", padding: 5 }}>
+                  <img src={Ramdev} width={100} />
+                  <img src={correct} width={50} />
+                  <img src={MicromaxInfinity} width={100} />
+                </div>
+                <div style={{ border: "3px solid grey", padding: 5 }}>
+                  <img src={RanveerSingh} width={100} />
+                  <img src={correct} width={50} />
+                  <img src={SamgsungA9} width={100} />
+                </div>
+                <div style={{ border: "3px solid grey", padding: 5 }}>
+                  <img src={SRK} width={100} />
+                  <img src={correct} width={50} />
+                  <img src={HuaweiP20} width={100} />
+                </div>
+                <div style={{ border: "3px solid grey", padding: 5 }}>
+                  <img src={Sunny} width={100} />
+                  <img src={correct} width={50} />
+                  <img src={MotoZ2} width={100} />
+                </div>
+                <div style={{ border: "3px solid grey", padding: 5 }}>
+                  <img src={Virat} width={100} />
+                  <img src={correct} width={50} />
+                  <img src={AppleXs} width={100} />
+                </div>
+                <div style={{ border: "3px solid grey", padding: 5 }}>
+                  <img src={Badshah} width={100} />
+                  <img src={correct} width={50} />
+                  <img src={SamgsungS9} width={100} />
+                </div>
+                <div style={{ border: "3px solid grey", padding: 5 }}>
+                  <img src={Deepika} width={100} />
+                  <img src={correct} width={50} />
+                  <img src={OppoF3} width={100} />
+                </div>
+              </Modal>
+            </div>
+          )}
+
+          {this.state.showResult && (
             <div style={{ textAlign: "center" }}>
               <p>
-                Tag your friends and share your score using the buttons below 
+                Tag your friends and share your score using the buttons below
               </p>
             </div>
           )}
@@ -436,9 +509,7 @@ class App extends Component {
           )}
           {this.state.showResult && (
             <div style={{ textAlign: "center" }}>
-              <p>
-                and stand a chance to win amazon vouchers.
-              </p>
+              <p>and stand a chance to win amazon vouchers.</p>
             </div>
           )}
           {this.state.showResult && (
