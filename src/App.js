@@ -22,7 +22,6 @@ import SamgsungA9 from "./assets/phones/Samsung-Galaxy-A9-Pro.png";
 import SamgsungS9 from "./assets/phones/Samsung-Galaxy-S9+.png";
 import Xiaomi from "./assets/phones/xiaomi-mi-mix-3.png";
 import fb from "./assets/fb.png";
-import insta from "./assets/insta.png";
 import twitter from "./assets/twitter.png";
 import amazon from "./assets/amazon.jpg";
 import SliderPhone from "./phoneSlider";
@@ -33,6 +32,7 @@ class App extends Component {
     finallySubmit: false,
     showResult: false,
     answerCheck: [],
+    matchNumber:0,
     celebImages: [
       {
         image: DiljitSingh,
@@ -251,9 +251,16 @@ class App extends Component {
     });
 
     updatedPhoneImages[i] = updatedSelectedPhoneObj;
-
-    this.setState({ phoneImages: updatedPhoneImages }, () =>
-      this.addSelectedPhoneForCeleb()
+    console.log("final",this.state)
+    let count=0;
+    this.state.celebImages.map(item=>{
+      console.log("item",item)
+      if (item.clicked===true || item.match !=null){
+         count=count+1;
+      }
+    })
+    this.setState({ phoneImages: updatedPhoneImages,matchNumber:count}, () =>
+      this.addSelectedPhoneForCeleb(),
     );
     this.setState({ selectedPhone: updatedSelectedPhoneObj });
   };
@@ -316,10 +323,12 @@ class App extends Component {
           {!this.state.showResult && (
             <div className={styles.subheading}>
               <p align="center">
-                Choose the perfect smartphone gift
+                Choose the perfect gift for your favourite celebrity
                 <br />
-                for your favourite celebrity
+                 and stand a chance to win Amazon vouchers.
               </p>
+              <p align="center">First, Select a celebrity and then click the phone you want to match them to</p>
+              <p align="center" >( {this.state.matchNumber} out of 8 matched )</p>
             </div>
           )}
           {!this.state.showResult && (
@@ -398,8 +407,7 @@ class App extends Component {
           {this.state.showResult && (
             <div style={{ textAlign: "center" }}>
               <p>
-                Share it with your friends using <br />
-                the <span style={{ fontWeight: "bold" }}>#CelebValentine</span>
+                Tag your friends and share your score using the buttons below 
               </p>
             </div>
           )}
@@ -411,7 +419,7 @@ class App extends Component {
                 url="https://www.91mobiles.com/"
                 quote={`I got ${
                   this.state.answerCheck.length
-                } out of 8 in @91mobiles #CelebValentine contest. Beat my score and stand a chance to win Amazon vouchers.`}
+                } out of 8 in #91mobiles #CelebValentine contest. Beat my score and stand a chance to win Amazon vouchers.`}
               >
                 <img style={{ padding: 5 }} src={fb} alt="facebook" />{" "}
               </FacebookShareButton>
@@ -429,8 +437,7 @@ class App extends Component {
           {this.state.showResult && (
             <div style={{ textAlign: "center" }}>
               <p>
-                and stand a chance to win <br />
-                amazon vouchers.
+                and stand a chance to win amazon vouchers.
               </p>
             </div>
           )}
